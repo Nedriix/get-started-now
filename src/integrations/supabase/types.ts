@@ -14,7 +14,161 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      news: {
+        Row: {
+          active: boolean
+          content: string
+          created_at: string
+          id: string
+          publish_date: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          content: string
+          created_at?: string
+          id?: string
+          publish_date?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          content?: string
+          created_at?: string
+          id?: string
+          publish_date?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pricing_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      pricing_items: {
+        Row: {
+          category_id: string
+          created_at: string
+          details: string | null
+          featured: boolean
+          id: string
+          name: string
+          price: string
+          sort_order: number
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          details?: string | null
+          featured?: boolean
+          id?: string
+          name: string
+          price: string
+          sort_order?: number
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          details?: string | null
+          featured?: boolean
+          id?: string
+          name?: string
+          price?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_items_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_settings: {
+        Row: {
+          created_at: string
+          id: string
+          key: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          key: string
+          value: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          key?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      vehicles: {
+        Row: {
+          badge: string | null
+          category: string
+          created_at: string
+          features: string[]
+          groups: string[]
+          highlight: boolean
+          id: string
+          image_url: string | null
+          name: string
+          sort_order: number
+          type: string
+        }
+        Insert: {
+          badge?: string | null
+          category: string
+          created_at?: string
+          features?: string[]
+          groups?: string[]
+          highlight?: boolean
+          id?: string
+          image_url?: string | null
+          name: string
+          sort_order?: number
+          type: string
+        }
+        Update: {
+          badge?: string | null
+          category?: string
+          created_at?: string
+          features?: string[]
+          groups?: string[]
+          highlight?: boolean
+          id?: string
+          image_url?: string | null
+          name?: string
+          sort_order?: number
+          type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
